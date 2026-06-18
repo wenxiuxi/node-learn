@@ -4,4 +4,4 @@ async function test() {
     console.log('all users:',users)
     
 }
-test()
+test
