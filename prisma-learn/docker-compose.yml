@@ -1,0 +1,28 @@
+# 这个文件管理的所有服务
+# backend       → 这个服务起的名字（随便起）
+# build: .      → 从当前文件夹找Dockerfile来构建（就是你之前写的那个）
+# ports         → 端口映射，3000:3000，和之前手动写的-p参数一样
+# env_file      → 自动读取.env文件，相当于之前手动加的--env-file参数
+services:
+  backend:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env
+
+  frontend:
+    build:
+      context: ../../vue-learn/taskhub
+    ports:
+      - "8080:80"
+  # frontend                       → 第二个服务
+# build: ../../vue-learn/taskhub → 去这个相对路径找Dockerfile（前端项目那边）
+# ports: 8080:80                 → 和你之前手动跑的参数一样
+
+
+# "我有两个服务：backend和frontend
+# backend 用当前文件夹的Dockerfile构建，开3000端口，自动读取.env
+# frontend 用另一个路径的Dockerfile构建，开8080端口
+# 一条命令，把这两个都启动"
